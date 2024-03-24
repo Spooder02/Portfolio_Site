@@ -1,18 +1,22 @@
 import Image from "next/image";
+import Link from "next/link";
 import UndefinedImage from "@/../public/image.png"
 import ItemCardData from "@/datatype";
 
 const ItemCard = (props:ItemCardData) => {
 
     return (
-        <div className="block w-max rounded-lg shadow-lg">
+        <div className="w-64 block rounded-lg shadow-lg m-auto my-4 lg:w-3/4">
+            <Link href={`/works/${props.id}`}>
             <Image src={UndefinedImage}
-            className="w-64 sm:w-96"
+            className="w-max"
             alt={"Image Replacement"}/>
-            <p className="py-1 font-semibold text-center">{props.title} </p>
-            <p className="text-left font-gray-400">2024-03-20</p>
-            <p className="p-4">{props.description}</p>
-            
+            <div className="m-auto p-auto">
+                <p className="py-1 text-lg font-semibold text-center">{props.title} </p>
+                <p className="text-right text-gray-300 mx-2">기간: 240320 ~ 240324</p>
+                <p className="px-4 py-2">{props.description}</p>
+            </div>
+            </Link>
         </div>
     )
 }

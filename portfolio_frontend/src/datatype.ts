@@ -1,6 +1,7 @@
 interface ItemCardData {
-    title: String,
-    description: String
+    id: number,
+    title: string,
+    description: string
 }
 
 export default ItemCardData;
