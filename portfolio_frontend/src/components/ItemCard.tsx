@@ -13,7 +13,7 @@ const ItemCard = (props:ItemCardData) => {
             alt={"Image Replacement"}/>
             <div className="m-auto p-auto">
                 <p className="py-1 text-lg font-semibold text-center">{props.title} </p>
-                <p className="text-right text-gray-300 mx-2">기간: 240320 ~ 240324</p>
+                <p className="text-right text-gray-300 mx-2">기간: {props.date} | 제작자: {props.creator} </p>
                 <p className="px-4 py-2">{props.description}</p>
             </div>
             </Link>
