@@ -1,5 +1,5 @@
 import '@/app/globals.css'
-import MainPage from '@/components/MainPage'
+import MainPage from '@/app/_components/MainPage'
 
 export default function mainPage() {
 

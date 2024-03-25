@@ -1,4 +1,4 @@
-import ItemCard from "@/components/ItemCard";
+import ItemCard from "@/app/_components/ItemCard";
 import items from "../testData";
 
 const Works = () => {
@@ -9,11 +9,12 @@ const Works = () => {
             </p>
             <div className="grid gap-y-4 p-4 overflow-auto sm:grid-cols-2 lg:grid-cols-3">
             {
-                items.map((item) => (
+                items.toReversed().map((item) => (
                     <ItemCard
                         id={item.id}
                         title={item.title}
                         date={item.date}
+                        stack={item.stack}
                         creator={item.creator}
                         description={item.description}
                     />

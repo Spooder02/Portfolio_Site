@@ -9,8 +9,9 @@ const Introduction = () => {
             <p className="text-center text-2xl font-semibold my-2">
                 소개
             </p>
-            <div className='border-b'>
-                <p className="text-center my-16 italic text-xl text-semibold">"개발자의 편협한 시선이 아닌, 사용자의 입장에서 더 나은 삶을 위한 서비스를 만들어갑니다."</p>
+            <div className="py-4 my-4 bg-slate-100 rounded shadow-lg text-center">
+                <p className="text-2xl font-bold">개발 모토:</p>
+                <p className="my-2 italic text-xl font-semibold">"개발자의 편협한 시선이 아닌, 사용자의 입장에서 더 나은 삶을 위한 서비스를 만들어갑니다."</p>
             </div>
             <div className="w-3/4 py-8 mx-auto border-b lg:grid grid-cols-3 content-center justify-center justify-items-center items-center py-8">
                 <Image src={ProfileImage} className="w-3/4 rounded-full p-4" alt={"Profile Image"}/>
