@@ -1,5 +1,11 @@
 import ItemCard from "@/app/_components/ItemCard";
 import items from "../testData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Developments",
+    description: "This is a page which shows what I made"
+}
 
 const Works = () => {
     return (
@@ -11,10 +17,14 @@ const Works = () => {
             {
                 items.toReversed().map((item) => (
                     <ItemCard
+                        key={item.id}
                         id={item.id}
                         title={item.title}
+                        image={item.image}
                         date={item.date}
-                        stack={item.stack}
+                        stacks={item.stacks}
+                        github_link={item.github_link}
+                        project_link={item.project_link}
                         creator={item.creator}
                         description={item.description}
                     />

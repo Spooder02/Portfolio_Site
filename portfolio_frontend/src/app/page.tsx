@@ -1,5 +1,11 @@
 import '@/app/globals.css'
 import MainPage from '@/app/_components/MainPage'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: "Portfolio Mainpage",
+    description: "Geonhui's Portfolio Mainpage"
+}
 
 export default function mainPage() {
 

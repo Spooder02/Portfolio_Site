@@ -5,19 +5,21 @@ import ItemCardData from "@/datatype";
 
 const ItemCard = (props:ItemCardData) => {
     const description = props.description.split('.')[0];
-    const stackLength = props.stack.length;
+    const stackLength = props.stacks.length;
     return (
-        <div className="w-64 block rounded-lg shadow-lg m-auto my-4 lg:w-3/4">
+        <div className="w-64 block rounded-lg shadow-lg m-auto my-4 lg:w-3/4 hover:translate-y-2 duration-300">
             <Link href={`/works/${props.id}`}>
-            <Image src={UndefinedImage}
-            className="w-max"
+            <Image src={
+                (props.image === null)? UndefinedImage: require(`@/../public/${props.image}`).default
+            }
+            className="w-64 m-auto"
             alt={"Image Replacement"}/>
             <div className="m-auto p-auto">
                 <p className="py-1 text-lg font-semibold text-center">{props.title} </p>
                 <div className="text-right mb-0.5 text-sm mr-2">
                     <span className="">Tech Stacks: </span>
                     <span className="font-medium">
-                    {props.stack.map((stack, i) => {
+                    {props.stacks.map((stack, i) => {
                         if (i === stackLength-1) return `${stack}`
                         else return `${stack}, `
                     })}

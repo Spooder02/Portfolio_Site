@@ -2,6 +2,12 @@ import Image from 'next/image';
 import ProfileImage from "@/../public/square_profile.jpg"
 import VerifiedImage from "@/../public/diploma.png"
 import SoftwareDevelopment from "@/../public/software-development.png"
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Introduction",
+    description: "This is Geonhui's Introduction Page"
+}
 
 const Introduction = () => {
     return (

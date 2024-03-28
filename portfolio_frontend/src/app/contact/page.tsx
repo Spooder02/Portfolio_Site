@@ -1,3 +1,10 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact",
+    description: "This is Geonhui's contact page"
+}
+
 const Contact = () => {
     return (
         <div className="mx-4 mt-8">
