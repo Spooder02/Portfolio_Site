@@ -1,6 +1,7 @@
 import ItemCard from "@/app/_components/ItemCard";
 import items from "../testData";
 import { Metadata } from "next";
+import ItemCardData from "@/datatype";
 
 export const metadata: Metadata = {
     title: "Developments",
@@ -15,7 +16,7 @@ const Works = () => {
             </p>
             <div className="grid gap-y-4 p-4 overflow-auto sm:grid-cols-2 lg:grid-cols-3">
             {
-                items.toReversed().map((item) => (
+                items.toReversed().map((item: ItemCardData) => (
                     <ItemCard
                         key={item.id}
                         id={item.id}
@@ -23,8 +24,6 @@ const Works = () => {
                         image={item.image}
                         date={item.date}
                         stacks={item.stacks}
-                        github_link={item.github_link}
-                        project_link={item.project_link}
                         creator={item.creator}
                         description={item.description}
                     />

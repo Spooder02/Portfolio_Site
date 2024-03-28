@@ -128,3 +128,21 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+portfolio_backend/src/main/resources/application.properties
+portfolio_backend/HELP.md
+portfolio_backend/.gradle
+portfolio_backend/build/
+portfolio_backend/!gradle/wrapper/gradle-wrapper.jar
+portfolio_backend/!**/src/main/**/build/
+portfolio_backend/!**/src/test/**/build/
+
+### STS ###
+portfolio_backend/.apt_generated
+portfolio_backend/.classpath
+portfolio_backend/.factorypath
+portfolio_backend/.project
+portfolio_backend/settings
+portfolio_backend/.springBeans
+portfolio_backend/.sts4-cache
+portfolio_backend/bin/

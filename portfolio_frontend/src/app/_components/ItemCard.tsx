@@ -4,7 +4,7 @@ import UndefinedImage from "@/../public/image.png"
 import ItemCardData from "@/datatype";
 
 const ItemCard = (props:ItemCardData) => {
-    const description = props.description.split('.')[0];
+    const description = props.description.split('.')[0]; // 길이 제한을 위한 String 변수 설정
     const stackLength = props.stacks.length;
     return (
         <div className="w-64 block rounded-lg shadow-lg m-auto my-4 lg:w-3/4 hover:translate-y-2 duration-300">

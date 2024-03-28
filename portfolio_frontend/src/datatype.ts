@@ -1,4 +1,14 @@
-interface ItemCardData {
+export default interface ItemCardData {
+    id: number,
+    image: string|null,
+    title: string,
+    creator: string,
+    stacks: Array<string>,
+    date: string,
+    description: string,
+}
+
+export default interface ProjectData {
     id: number,
     image: string|null,
     title: string,
@@ -8,6 +18,5 @@ interface ItemCardData {
     project_link: string|null,
     date: string,
     description: string,
+    content: string
 }
-
-export default ItemCardData;
