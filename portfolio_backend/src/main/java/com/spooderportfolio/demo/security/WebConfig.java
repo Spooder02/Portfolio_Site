@@ -12,16 +12,11 @@ public class WebConfig {
     @Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/", "/home").permitAll()
-				.anyRequest()
+			.authorizeHttpRequests(
+				authorizeRequests -> authorizeRequests.anyRequest()
                 .permitAll()
 			)
-			.formLogin((form) -> form
-				.loginPage("/login")
-				.permitAll()
-			)
-			.logout((logout) -> logout.permitAll());
+			.csrf().disable();
 
 		return http.build();
 	}
