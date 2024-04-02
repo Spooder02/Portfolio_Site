@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spooderportfolio.Util.ImageUtil;
 import com.spooderportfolio.demo.Model.Project;
 import com.spooderportfolio.demo.Repository.ProjectRepository;
 
@@ -24,13 +25,10 @@ public class ProjectService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProjectService.class);
 
-    private final String imageDirectory = "portfolio_backend/image/";
-
     public Project addProject(Project project, MultipartFile imageFile) {
         if (imageFile != null && !imageFile.isEmpty()) {
             try {
-                saveImage(imageFile);
-                project.setImage(imageFile.getOriginalFilename());
+                project.setImage(ImageUtil.compressImage(imageFile.getBytes()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -43,15 +41,16 @@ public class ProjectService {
         projectRepository.deleteById(id);
     }
 
-    public Optional<Project> getProjectById(@NonNull Long id) {
-        return projectRepository.findById(id);
+    public Project getProjectById(@NonNull Long id) {
+        Project project = projectRepository.findById(id).get();
+        return project;
+    }
+
+    public Project getProjectByTitle(@NonNull String title) {
+        return projectRepository.findByTitle(title);
     }
 
     public List<Project> getAllProject() {
         return projectRepository.findAll();
-    }
-
-    public void saveImage(MultipartFile imageFile) throws IOException {
-        Files.copy(imageFile.getInputStream(), Paths.get(imageDirectory, imageFile.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
     }
 }

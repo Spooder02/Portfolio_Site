@@ -7,5 +7,5 @@ import com.spooderportfolio.demo.Model.Project;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-
+    Project findByTitle(String title);
 }

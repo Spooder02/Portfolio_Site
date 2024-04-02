@@ -12,6 +12,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
@@ -19,6 +20,7 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
+@Data
 @DynamicInsert
 @NoArgsConstructor
 @Table(name="Projects")
@@ -27,7 +29,9 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String image;
+    @Lob
+    @Column(length = 65555)
+    private byte[] image;
 
     @Column(nullable = false)
     private String title;

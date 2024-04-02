@@ -148,3 +148,5 @@ portfolio_backend/.springBeans
 portfolio_backend/.sts4-cache
 portfolio_backend/bin/
 portfolio_backend/image
+
+portfolio_frontend/next.config.mjs

@@ -4,15 +4,10 @@ import GithubLogo from "@/../public/github_logo.png"
 import WebLogo from "@/../public/click.png"
 import items from "@/app/testData";
 import Link from "next/link";
-import ProjectData from "@/datatype";
+import { ProjectData, stack } from "@/datatype";
 
 let projectName: string;
-let projectData: ProjectData;
-
-function setProjectData(index: number) {
-    projectData = items[index];
-}
-
+let projectData:ProjectData;
 export async function generateMetadata() {
     return {
         title: `프로젝트 소개: ${projectData.title}`,
@@ -20,18 +15,25 @@ export async function generateMetadata() {
     }
 }
 
-const WorkDetailPage = ({ params }: { params: { workId: number }; }) => {
-    const index = params.workId-1;
-    setProjectData(index);
+async function getProjectData(id: number) {
+    const res = await fetch(`${process.env.backend_api_address}/projects/exact?id=${id}`);
+    projectData = await res.json() as ProjectData;
+    return projectData;
+}
 
+const WorkDetailPage = async ({ params }: { params: { workId: number }; }) => {
+    const index = params.workId;
+    await getProjectData(index);
     const stackLength = projectData.stacks.length;
     projectName = projectData.title;
     return (
         <>
             <div key={index} className="border-b md:flex">
                 <Image src={
-                    (projectData.image === null)? UndefinedImage: require(`@/../public/${projectData.image}`).default
+                    (projectData.image === null)? UndefinedImage: `${process.env.backend_api_address}/projects/static/${projectData.title}`
                 }
+                width={100}
+                height={100}
                 className="w-48 h-48 my-4 m-auto md:mx-4"
                 alt={"Image Replacement"}
                 priority={true}
@@ -40,12 +42,12 @@ const WorkDetailPage = ({ params }: { params: { workId: number }; }) => {
                     <p className="text-lg font-bold">프로젝트명: {projectData.title}</p>
                     <span className="text-sm font-medium text-green-500">Tech Stack: </span>
                     <span className="text-sm font-medium mr-2">
-                    {projectData.stacks.map((stack, i) => {
-                        if (i === stackLength-1) return `${stack}`
-                        else return `${stack}, `
+                    {projectData.stacks.map((stack:stack, i:number) => {
+                        if (i === stackLength-1) return `${stack.stack_name}`
+                        else return `${stack.stack_name}, `
                     })}
                     </span>
-                    <span className="block text-sm text-gray-400">작업날짜: {projectData.date} | 제작자: {projectData.creator}</span>
+                    <span className="block text-sm text-gray-400">작업날짜: {projectData.date} | 제작자: {projectData.teammates[0].name}</span>
                     <p className="w-fit h-1/5 p-2 my-2 bg-gray-100 rounded-md whitespace-pre-line overflow-scroll shadow-inner md:h-14">
                         {projectData.description}
                     </p>
