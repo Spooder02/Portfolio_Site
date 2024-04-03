@@ -4,7 +4,7 @@ import GithubLogo from "@/../public/github_logo.png"
 import WebLogo from "@/../public/click.png"
 import items from "@/app/testData";
 import Link from "next/link";
-import { ProjectData, stack } from "@/datatype";
+import { ProjectData, stack, teammates } from "@/datatype";
 
 let projectName: string;
 let projectData:ProjectData;
@@ -47,7 +47,26 @@ const WorkDetailPage = async ({ params }: { params: { workId: number }; }) => {
                         else return `${stack.stack_name}, `
                     })}
                     </span>
-                    <span className="block text-sm text-gray-400">작업날짜: {projectData.date} | 제작자: {projectData.teammates[0].name}</span>
+                    <span className="block text-sm text-gray-400">작업날짜: {projectData.date} | 제작자: {projectData.teammates.map((teammate:teammates, i:number) =>{
+                        if (i == projectData.teammates.length-1)
+                            return (
+                                <span
+                                className="underline"
+                                title={teammate.part}
+                                >
+                                    {teammate.name}
+                                </span>
+                            )
+                        else
+                            return (
+                                <span
+                                className="underline"
+                                title={teammate.part}
+                                >
+                                    {teammate.name},
+                                </span>
+                            )
+                    })}</span>
                     <p className="w-fit h-1/5 p-2 my-2 bg-gray-100 rounded-md whitespace-pre-line overflow-scroll shadow-inner md:h-14">
                         {projectData.description}
                     </p>
