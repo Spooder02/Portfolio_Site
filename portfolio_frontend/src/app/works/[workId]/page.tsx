@@ -8,7 +8,6 @@ import { ProjectData, stack, teammates } from "@/datatype";
 let projectName: string;
 let projectData:ProjectData;
 async function getProjectData(id: number) {
-    console.log(projectData)
     const res = await fetch(`${process.env.backend_api_address}/projects/exact?id=${id}`);
     projectData = await res.json() as ProjectData;
     return projectData;
