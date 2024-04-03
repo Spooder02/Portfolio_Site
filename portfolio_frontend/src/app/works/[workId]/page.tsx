@@ -2,23 +2,23 @@ import Image from "next/image";
 import UndefinedImage from "@/../public/image.png"
 import GithubLogo from "@/../public/github_logo.png"
 import WebLogo from "@/../public/click.png"
-import items from "@/app/testData";
 import Link from "next/link";
 import { ProjectData, stack, teammates } from "@/datatype";
 
 let projectName: string;
 let projectData:ProjectData;
+async function getProjectData(id: number) {
+    console.log(projectData)
+    const res = await fetch(`${process.env.backend_api_address}/projects/exact?id=${id}`);
+    projectData = await res.json() as ProjectData;
+    return projectData;
+}
+
 export async function generateMetadata() {
     return {
         title: `프로젝트 소개: ${projectData.title}`,
         description: `${projectData.title} 프로젝트에 대한 소개 페이지입니다.`,
     }
-}
-
-async function getProjectData(id: number) {
-    const res = await fetch(`${process.env.backend_api_address}/projects/exact?id=${id}`);
-    projectData = await res.json() as ProjectData;
-    return projectData;
 }
 
 const WorkDetailPage = async ({ params }: { params: { workId: number }; }) => {
